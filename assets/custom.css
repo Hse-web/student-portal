@@ -1,0 +1,22 @@
+/* assets/custom.css */
+
+/* Example: Smooth card hover effect */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  }
+  
+  /* Background styling for a more app-like feel */
+  body {
+    background: #f5f7fa;
+  }
+  
+  /* Optional: more custom tweaks can go here */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  
