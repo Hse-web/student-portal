@@ -1,0 +1,77 @@
+<?php
+require_once __DIR__.'/../../config/session.php';
+require_role('admin');
+require_once __DIR__.'/../../config/db.php';
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD']==='POST') {
+  $centre = $_POST['centre_id'];
+  $date   = $_POST['class_date'];
+  $url    = $_POST['video_url'];
+  $i = $conn->prepare("
+    INSERT INTO compensation_videos
+      (centre_id, class_date, video_url)
+    VALUES (?,?,?)
+  ");
+  $i->bind_param('iss',$centre,$date,$url);
+  $i->execute(); $i->close();
+  header("Location: compensation_videos.php?added=1");
+  exit;
+}
+
+// Fetch existing
+$res = $conn->query("
+  SELECT id, centre_id, class_date, video_url
+    FROM compensation_videos ORDER BY class_date DESC
+");
+?>
+<?php include __DIR__.'/../../templates/partials/header_admin.php'; ?>
+
+<main class="container-fluid px-4">
+  <h1 class="mt-4">Manage Compensation Videos</h1>
+  <?php if(isset($_GET['added'])):?>
+    <div class="alert alert-success">Video added.</div>
+  <?php endif;?>
+
+  <form method="POST" class="row g-3 mb-4">
+    <div class="col-md-3">
+      <label>Centre</label>
+      <select name="centre_id" class="form-select" required>
+        <option value="1">Centre A</option>
+        <option value="2">Centre B</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label>Class Date</label>
+      <input type="date" name="class_date" class="form-control" required>
+    </div>
+    <div class="col-md-4">
+      <label>Video URL</label>
+      <input type="url" name="video_url" class="form-control" placeholder="https://..." required>
+    </div>
+    <div class="col-md-2 d-grid">
+      <button class="btn btn-success mt-4">Add Video</button>
+    </div>
+  </form>
+
+  <div class="card shadow-sm">
+    <div class="card-body table-responsive">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr><th>Date</th><th>Centre</th><th>URL</th></tr>
+        </thead>
+        <tbody>
+          <?php while($r=$res->fetch_assoc()):?>
+            <tr>
+              <td><?=htmlspecialchars($r['class_date'])?></td>
+              <td><?= $r['centre_id']==1?'A':'B' ?></td>
+              <td><a href="<?=htmlspecialchars($r['video_url'])?>" target="_blank">View</a></td>
+            </tr>
+          <?php endwhile;?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<?php include __DIR__.'/../../templates/partials/footer.php'; ?>
