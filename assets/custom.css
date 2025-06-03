@@ -1,0 +1,52 @@
+/* assets/custom.css */
+
+/* Example: Smooth card hover effect */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  }
+  
+  /* Background styling for a more app-like feel */
+  body {
+    background: #f5f7fa;
+  }
+  
+  /* Optional: more custom tweaks can go here */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  /* assets/custom.css */
+
+/* attendance.php calendar colors & layout */
+.hdr-row        { background:#2d2d44;   padding:.75rem; }
+.calendar       { background:#202033;   padding:.5rem; overflow-x:auto; }
+th, td         { border:1px solid #2a2a3d; text-align:center; padding:.5rem; }
+.selected-day   { background:#3a3a5a !important; }
+.status-dot     {
+  position:absolute; bottom:4px; right:4px;
+  width:18px; height:18px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.75rem; color:#fff;
+}
+.status-dot.Present      { background:#28a745; }
+.status-dot.Absent       { background:#dc3545; }
+.status-dot.Compensation { background:#ffc107; color:#000; }
+/* student progrees page */
+ .card-progress {
+      border:none; border-radius:1rem;
+      box-shadow:0 2px 8px rgba(0,0,0,.1);
+    }
+    .ring-emoji {
+      position:absolute; top:50%; left:50%;
+      width:48px;height:48px;
+      transform:translate(-50%,-50%);
+      animation:float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform:translate(-50%,-50%) }
+      50%     { transform:translate(-50%,-55%) }}
+  
