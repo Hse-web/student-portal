@@ -227,8 +227,8 @@ $stmt->close();
         <!-- ─── PayU Payment Form (Overdue) ──────────────────────── -->
         <?php
         // Note: Replace these with your real PayU key / salt / URLs
-        $payuKey     = 'z02L8J';
-        $payuSalt    = 'ZoDYBzHABZmmLjdJADekp0yL848B0vFT';
+        $payuKey     = '';
+        $payuSalt    = '';
         $payuUrl     = 'https://test.payu.in/_payment';
         $txnid       = 'TXN' . time();
         $amount      = round($currFee['total']);
