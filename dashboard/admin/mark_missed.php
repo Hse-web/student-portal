@@ -1,9 +1,14 @@
 <?php
-require_once __DIR__ . '/../../config/session.php';
+require_once __DIR__ . '/../../config/bootstrap.php';
 require_role('admin');
-require_once __DIR__ . '/../../config/db.php';
-
-if (!isset($_GET['id'])) exit("Invalid request");
+if (!isset($_GET['id'])) {
+    $_SESSION['flash'] = [
+        'type' => 'danger',
+        'msg'  => 'Invalid request.'
+    ];
+    header('Location: index.php?page=comp_requests');
+    exit;
+}
 $id = intval($_GET['id']);
 
 // 1) Update request status
@@ -25,5 +30,10 @@ $d->bind_param('i',$id);
 $d->execute();
 $d->close();
 
-header("Location: comp_requests.php?updated=1");
+$_SESSION['flash'] = [
+    'type' => 'warning',
+    'msg'  => 'Compensation request marked as missed.'
+];
+
+header('Location: index.php?page=comp_requests');
 exit;
