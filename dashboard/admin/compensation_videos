@@ -1,9 +1,8 @@
 <?php
 // File: dashboard/admin/compensation_videos.php
 
-require_once __DIR__ . '/../../config/session.php';
+require_once __DIR__ . '/../../config/bootstrap.php';
 require_role('admin');
-require_once __DIR__ . '/../../config/db.php';
 
 // 1) Admin nav + user info for header_admin.php
 $adminUsername = $_SESSION['username'] ?? 'Admin';
