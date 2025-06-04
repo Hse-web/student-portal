@@ -1,10 +1,11 @@
 <?php
 // dashboard/student/student_invoice.php
-
-require_once __DIR__ . '/../../config/session.php';
+$page = 'student_invoice';
+require_once __DIR__ . '/../../config/bootstrap.php';
 require_role('student');
-require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 require_once __DIR__ . '/../includes/fee_calculator.php';
+require_once __DIR__ . '/../includes/can_student_subscribe.php';
 
 // 1) Pull ID from session
 $studentId = (int)($_SESSION['student_id'] ?? 0);
