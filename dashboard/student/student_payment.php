@@ -181,8 +181,8 @@ $stmt->close();
 
         <!-- PayU stub (fill in your own key/salt/URLs) -->
         <?php
-        $payuKey     = ' z02L8J';
-        $payuSalt    = 'ZoDYBzHABZmmLjdJADekp0yL848B0vFT';
+        $payuKey     = ' ';
+        $payuSalt    = '';
         $payuUrl     = 'https://test.payu.in/_payment';
         $txnid       = 'TXN'.time();
         $amount      = round($currFee['total']);
